@@ -1,7 +1,16 @@
 import React from 'react';
 
-const Header = () => {
-    return <h2>React Users</h2>
+const Header = ({ onGridChange }) => {
+    return (
+        <nav>
+            <div className="nav-wrapper">
+                <ul className="right hide-on-med-and-down">
+                    <li onClick={onGridChange}><i className="material-icons">view_module</i></li>
+                    <li><i className="material-icons">refresh</i></li>
+                </ul>
+            </div>
+        </nav>
+    )
 }
 
 
