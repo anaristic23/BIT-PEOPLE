@@ -6,9 +6,9 @@ import { UserCardItem } from './users/UserCardItem';
 import { Header } from './common/Header';
 import { Footer } from './common/Footer';
 import { Search } from './common/Search';
-import { BASE_ENDPOINT } from '../shared/constants';
+import { Loader } from './common/Loader'
 // import { UserListItem } from './users/UserListItem';
-import { fetchUsersData } from '../services/UserService'
+import { fetchUsersData } from '../services/UserService';
 // import { loadUsersData } from '../services/UserService';
 
 
@@ -20,7 +20,8 @@ class App extends React.Component {
     this.state = {
       isGrid: false,
       searchText: '',
-      users: []
+      users: [],
+      load: true
     }
   }
 
@@ -29,7 +30,7 @@ class App extends React.Component {
   fetchUsers = () => {
     fetchUsersData()
       .then(usersArray => {
-        this.setState({ users: usersArray })
+        this.setState({ users: usersArray, load: false })
       });
 
   }
@@ -67,11 +68,18 @@ class App extends React.Component {
           onRefresh={this.onRefreshUsers}
         />
 
-        <Search searchUsers={this.getSearchUsers} />
-
-        < main className="App" >
-          <UsersList listOfUsers={filteredUsers} isGrid={this.state.isGrid} />
-        </main >
+        {
+          this.state.load
+            ? <Loader />
+            : (
+              <Fragment>
+                <Search searchUsers={this.getSearchUsers} />
+                < main className="App" >
+                  <UsersList listOfUsers={filteredUsers} isGrid={this.state.isGrid} />}
+                </main >
+              </Fragment>
+            )
+        }
 
         <Footer />
       </Fragment>

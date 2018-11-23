@@ -6,7 +6,6 @@ import { UserCardItem } from './UserCardItem';
 
 const UsersList = (props) => {
     const { listOfUsers, isGrid } = props;
-
     const userItems = listOfUsers.map((user, index) => {
         return (
             <UserListItem
