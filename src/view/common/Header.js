@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Header = ({ onGridChange, isGrid, onRefresh }) => {
+const Header = (props) => {
+    const { onGridChange, isGrid, onRefresh } = props;
     const icon = isGrid ? <i className="material-icons">list</i> : <i className="material-icons">view_module</i>
     return (
         <nav>

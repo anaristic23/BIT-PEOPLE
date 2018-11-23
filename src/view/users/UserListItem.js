@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-const UserListItem = ({ userPicture, userName, userEmail, userAge }) => {
+const UserListItem = (props) => {
+
+    const { userPicture, userName, userEmail, userAge, userGender } = props
+    const colorFemale = userGender === 'female' ? 'red lighten-5' : '';
+
     return (
 
 
         <ul className="collection">
-            <li className="collection-item avatar">
+            <li className={`collection-item avatar ${colorFemale}`}>
                 <img src={userPicture} alt="" className="circle" />
                 <p><span>Name: </span>{userName}</p>
                 <p><img src="/images/mail.svg" alt="" /><span>E-mail: </span>{userEmail}</p>

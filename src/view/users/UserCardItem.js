@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-const UserCardItem = ({ userPicture, userName, userEmail, userAge }) => {
+const UserCardItem = (props) => {
+
+  const { userPicture, userName, userEmail, userAge, userGender } = props
+  const colorFemale = userGender === 'female' ? 'red lighten-5' : '';
+
   return (
     <div className="col s12 m4">
-      <div className="card">
+      <div className={`card ${colorFemale}`}>
         <div className="card-image">
           <img src={userPicture} alt="" />
         </div>

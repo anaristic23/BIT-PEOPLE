@@ -17,7 +17,8 @@ const fetchUsersData = () => {
                     rawUser.picture.large,
                     rawUser.name.first,
                     rawUser.email,
-                    rawUser.dob.date.toLocaleString('en-GB').slice(0, 10)
+                    rawUser.dob.date.toLocaleString('en-GB').slice(0, 10),
+                    rawUser.gender
                 )
             });
 

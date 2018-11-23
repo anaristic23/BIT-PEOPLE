@@ -4,7 +4,8 @@ import { UserListItem } from './UserListItem';
 import { UserCardItem } from './UserCardItem';
 // import User from "../entities/User"
 
-const UsersList = ({ listOfUsers, isGrid }) => {
+const UsersList = (props) => {
+    const { listOfUsers, isGrid } = props;
 
     const userItems = listOfUsers.map((user, index) => {
         return (
@@ -14,6 +15,7 @@ const UsersList = ({ listOfUsers, isGrid }) => {
                 userEmail={user.getHiddenEmail()}
                 userAge={user.age}
                 userPicture={user.picture}
+                userGender={user.gender}
             />
         );
     })
@@ -26,6 +28,7 @@ const UsersList = ({ listOfUsers, isGrid }) => {
                 userEmail={user.email}
                 userAge={user.age}
                 userPicture={user.picture}
+                userGender={user.gender}
             />
         );
     })

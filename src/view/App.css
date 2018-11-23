@@ -7,4 +7,11 @@
   .title {
    position: absolute;
    left: 50%;
-  }
+}
+
+.App {
+   margin-top: 100px;
+}
+.search {
+   float: left;
+}

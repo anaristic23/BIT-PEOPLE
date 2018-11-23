@@ -1,9 +1,10 @@
 class User {
-    constructor(picture, name, email, age) {
+    constructor(picture, name, email, age, gender) {
         this.picture = picture;
         this.name = name;
         this.email = email;
         this.age = age;
+        this.gender = gender;
     }
 
     getHiddenEmail() {
@@ -16,5 +17,6 @@ class User {
     }
 
 }
+
 
 export default User

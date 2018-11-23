@@ -5,6 +5,8 @@ import { UsersList } from './users/UsersList';
 import { UserCardItem } from './users/UserCardItem';
 import { Header } from './common/Header';
 import { Footer } from './common/Footer';
+import { Search } from './common/Search';
+import { BASE_ENDPOINT } from '../shared/constants';
 // import { UserListItem } from './users/UserListItem';
 import { fetchUsersData } from '../services/UserService'
 // import { loadUsersData } from '../services/UserService';
@@ -17,9 +19,12 @@ class App extends React.Component {
 
     this.state = {
       isGrid: false,
+      searchText: '',
       users: []
     }
   }
+
+
 
   fetchUsers = () => {
     fetchUsersData()
@@ -31,36 +36,44 @@ class App extends React.Component {
 
   componentDidMount() {
     this.fetchUsers()
+    const prevView = localStorage.getItem("isGrid") === "true" ? true : false;
+    this.setState({ isGrid: prevView })
   }
 
 
   onChangeViewMode = () => {
+    localStorage.setItem("isGrid", !this.state.isGrid)
     this.setState(prevState => ({ isGrid: !prevState.isGrid }));
   }
-
-
 
   onRefreshUsers = () => {
     this.fetchUsers()
   }
 
-  render() {
+  getSearchUsers = (inputValue) => {
+    this.setState({ searchText: inputValue });
+  }
 
+  render() {
+    const { users, searchText } = this.state;
+
+    const filteredUsers = users.filter(user => user.name.includes(searchText));
 
     return (
       < Fragment >
+        <Header
+          onGridChange={this.onChangeViewMode}
+          isGrid={this.state.isGrid}
+          onRefresh={this.onRefreshUsers}
+        />
 
-        <Header onGridChange={this.onChangeViewMode} isGrid={this.state.isGrid} onRefresh={this.onRefreshUsers} />
-
-        {/* <input type="button" value="click" onClick={this.onChangeViewMode} /> */}
+        <Search searchUsers={this.getSearchUsers} />
 
         < main className="App" >
-
-          <UsersList listOfUsers={this.state.users} isGrid={this.state.isGrid} />
+          <UsersList listOfUsers={filteredUsers} isGrid={this.state.isGrid} />
         </main >
-        <footer className="App-footer">
-          <Footer />
-        </footer>
+
+        <Footer />
       </Fragment>
     );
   }
