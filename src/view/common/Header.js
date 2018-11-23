@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 const Header = (props) => {
     const { onGridChange, isGrid, onRefresh } = props;
@@ -7,6 +9,7 @@ const Header = (props) => {
         <nav>
             <div className="nav-wrapper"><a><span className="title">Bit Persons</span></a>
                 <ul className="right hide-on-med-and-down">
+                    <li><Link to="/About">About</Link></li>
                     <li onClick={onGridChange}><a>{icon}</a></li>
                     <li onClick={onRefresh}><a><i className="material-icons">refresh</i></a></li>
                 </ul>

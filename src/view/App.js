@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from 'react';
+import { Route } from 'react-router-dom';
 // import PropTypes from 'prop-types'
 import './App.css';
 import { UsersList } from './users/UsersList';
@@ -6,7 +7,8 @@ import { UserCardItem } from './users/UserCardItem';
 import { Header } from './common/Header';
 import { Footer } from './common/Footer';
 import { Search } from './common/Search';
-import { Loader } from './common/Loader'
+import { Loader } from './common/Loader';
+import { About } from './users/About';
 // import { UserListItem } from './users/UserListItem';
 import { fetchUsersData } from '../services/UserService';
 // import { loadUsersData } from '../services/UserService';
@@ -73,6 +75,7 @@ class App extends React.Component {
             ? <Loader />
             : (
               <Fragment>
+                <Route exact path="/About" component={About} />
                 <Search searchUsers={this.getSearchUsers} />
                 < main className="App" >
                   <UsersList listOfUsers={filteredUsers} isGrid={this.state.isGrid} />}
